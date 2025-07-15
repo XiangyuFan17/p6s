@@ -37,7 +37,6 @@ p6s is a terminal-based PostgreSQL database management tool developed in Go, pro
 
 ### Building From Source
 
-p6s is currently using Go v1.21.X or above. In order to build p6s from source you must:
 
 1. **Clone the repository**
    ```bash
@@ -47,7 +46,10 @@ p6s is currently using Go v1.21.X or above. In order to build p6s from source yo
 
 2. **Build and run the executable**
    ```bash
-   # Build for current platform
+   # Using Makefile (recommended)
+   make build
+   
+   # Or build manually
    go build -o p6s cmd/p6s/main.go
    
    # Run the application
@@ -56,14 +58,22 @@ p6s is currently using Go v1.21.X or above. In order to build p6s from source yo
 
 3. **Cross-platform builds**
    ```bash
-   # Build for Linux AMD64
-   GOOS=linux GOARCH=amd64 go build -o p6s-amd64 cmd/p6s/main.go
+   # Build for all platforms (recommended)
+   make build-all
    
-   # Build for Windows
-   GOOS=windows GOARCH=amd64 go build -o p6s.exe cmd/p6s/main.go
+   # Or build for specific platforms
+   make build-linux-amd64
+   make build-linux-arm64
+   make build-windows-amd64
+   make build-darwin-amd64
+   make build-darwin-arm64
    
-   # Build for macOS
-   GOOS=darwin GOARCH=amd64 go build -o p6s-darwin cmd/p6s/main.go
+   # Manual builds (alternative)
+   GOOS=linux GOARCH=amd64 go build -o build/p6s-linux-amd64 cmd/p6s/main.go
+   GOOS=linux GOARCH=arm64 go build -o build/p6s-linux-arm64 cmd/p6s/main.go
+   GOOS=windows GOARCH=amd64 go build -o build/p6s-windows-amd64.exe cmd/p6s/main.go
+   GOOS=darwin GOARCH=amd64 go build -o build/p6s-darwin-amd64 cmd/p6s/main.go
+   GOOS=darwin GOARCH=arm64 go build -o build/p6s-darwin-arm64 cmd/p6s/main.go
    ```
 
 ### Basic Operations
