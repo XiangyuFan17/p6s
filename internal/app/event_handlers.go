@@ -326,6 +326,13 @@ func (eh *EventHandlers) HandleSecretSelection(secretName string, index int, sec
 
 	secretKeyDropdown.SetOptions(keyNames, nil)
 	
+	// If there are keys available, set the first one as default and trigger selection
+	if len(keyNames) > 0 {
+		secretKeyDropdown.SetCurrentOption(0)
+		// Manually trigger the selection for the first key to ensure it's processed
+		eh.HandleSecretKeySelection(keyNames[0], 0, secretDropdown, usernameField, passwordField)
+	}
+	
 	// Rebind Secret Key selection event handler
 	secretKeyDropdown.SetSelectedFunc(func(text string, index int) {
 		eh.HandleSecretKeySelection(text, index, secretDropdown, usernameField, passwordField)

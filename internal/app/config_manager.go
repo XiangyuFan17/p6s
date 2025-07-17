@@ -100,7 +100,7 @@ func (cm *ConfigManager) SaveAndConnect(connConfig *ConnectionConfig, onComplete
 			Host:     connConfig.Host,
 			Port:     connConfig.Port,
 			Username: connConfig.Username,
-			Password: connConfig.Password, // Save original password or form input password
+			Password: actualPassword, // Save actual password (either from Secret or form input)
 			Database: connConfig.Database,
 			SSLMode:  connConfig.SSLMode,
 			// K8s related configuration
