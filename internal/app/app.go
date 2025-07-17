@@ -103,7 +103,7 @@ func (a *App) Connect() error {
 			a.ui.ConnTable.SetCell(0, i, cell)
 		}
 
-		a.ui.ConnTable.SetCell(1, 0, tview.NewTableCell("Connection failed, please check connection parameters").SetSelectable(false).SetExpansion(1))
+		a.ui.ConnTable.SetCell(1, 0, tview.NewTableCell("[red]Connection failed, please check connection parameters").SetSelectable(false).SetExpansion(1))
 		return err
 	}
 
@@ -266,6 +266,11 @@ func (a *App) setupEventHandlers() {
 			
 			switch event.Rune() {
 			case '1':
+				// Check database connection before allowing operation
+				if a.db == nil || !a.db.IsConnected() {
+					a.ui.ConnInfo.SetText("[red]Database not connected. Please configure connection first.[white]\n")
+					return nil
+				}
 				a.filterType = "all"
 				a.tableHeaders = []string{"PID", "User", "Database", "Client Address", "Application Name", "Start Time", "Status", "Query"}
 				a.ui.TableHeaders = a.tableHeaders
@@ -277,6 +282,11 @@ func (a *App) setupEventHandlers() {
 				a.ui.UpdateFocusStyle()
 				return nil
 			case '2':
+				// Check database connection before allowing operation
+				if a.db == nil || !a.db.IsConnected() {
+					a.ui.ConnInfo.SetText("[red]Database not connected. Please configure connection first.[white]\n")
+					return nil
+				}
 				a.filterType = "active"
 				a.tableHeaders = []string{"PID", "User", "Database", "Client Address", "Application Name", "Start Time", "Status", "Query"}
 				a.ui.TableHeaders = a.tableHeaders
@@ -288,6 +298,11 @@ func (a *App) setupEventHandlers() {
 				a.ui.UpdateFocusStyle()
 				return nil
 			case '3':
+				// Check database connection before allowing operation
+				if a.db == nil || !a.db.IsConnected() {
+					a.ui.ConnInfo.SetText("[red]Database not connected. Please configure connection first.[white]\n")
+					return nil
+				}
 				a.filterType = "blocked"
 				a.tableHeaders = []string{"PID", "User", "Database", "Client Address", "Application Name", "Start Time", "Status", "Query"}
 				a.ui.TableHeaders = a.tableHeaders
@@ -299,6 +314,11 @@ func (a *App) setupEventHandlers() {
 				a.ui.UpdateFocusStyle()
 				return nil
 			case '4':
+				// Check database connection before allowing operation
+				if a.db == nil || !a.db.IsConnected() {
+					a.ui.ConnInfo.SetText("[red]Database not connected. Please configure connection first.[white]\n")
+					return nil
+				}
 				a.filterType = "table_size"
 				a.tableHeaders = []string{"Schema", "Table Name", "Total Size", "Table Size", "Index Size", "Total Rows"}
 				a.ui.TableHeaders = a.tableHeaders
@@ -310,6 +330,11 @@ func (a *App) setupEventHandlers() {
 				a.ui.UpdateFocusStyle()
 				return nil
 			case '5':
+				// Check database connection before allowing operation
+				if a.db == nil || !a.db.IsConnected() {
+					a.ui.ConnInfo.SetText("[red]Database not connected. Please configure connection first.[white]\n")
+					return nil
+				}
 
 				a.showSQLQueryForm()
 

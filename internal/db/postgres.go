@@ -57,6 +57,11 @@ func (p *PostgresDB) Close() error {
 	return nil
 }
 
+// IsConnected checks if database is connected
+func (p *PostgresDB) IsConnected() bool {
+	return p.db != nil
+}
+
 // GetConnections retrieves current database connection information
 func (p *PostgresDB) GetConnections(filterType string) ([]model.Connection, error) {
 	if p.db == nil {
