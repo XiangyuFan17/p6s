@@ -1,0 +1,45 @@
+name: Build and Release Go Binaries
+
+on:
+  push:
+    tags:
+      - 'v*'  # 只针对打了v开头的tag构建发布
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout source code
+      uses: actions/checkout@v3
+
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.20'
+
+    - name: Build binaries
+      run: |
+        mkdir -p build
+        GOOS=linux GOARCH=amd64 go build -o build/p6s-linux-amd64 cmd/p6s/main.go
+        GOOS=linux GOARCH=arm64 go build -o build/p6s-linux-arm64 cmd/p6s/main.go
+        GOOS=windows GOARCH=amd64 go build -o build/p6s-windows-amd64.exe cmd/p6s/main.go
+        GOOS=darwin GOARCH=amd64 go build -o build/p6s-darwin-amd64 cmd/p6s/main.go
+        GOOS=darwin GOARCH=arm64 go build -o build/p6s-darwin-arm64 cmd/p6s/main.go
+
+    - name: Create GitHub Release
+      id: create_release
+      uses: ncipollo/release-action@v1
+      with:
+        tag: ${{ github.ref_name }}
+
+    - name: Upload binaries to release
+      uses: ncipollo/release-action@v1
+      with:
+        tag: ${{ github.ref_name }}
+        artifacts: |
+          build/p6s-linux-amd64
+          build/p6s-linux-arm64
+          build/p6s-windows-amd64.exe
+          build/p6s-darwin-amd64
+          build/p6s-darwin-arm64
