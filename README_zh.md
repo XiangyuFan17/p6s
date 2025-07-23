@@ -10,7 +10,7 @@
 
 ## 简介
 
-p6s 是一个基于终端的 PostgreSQL 数据库管理工具，使用 Go 语言开发，提供直观的文本用户界面 (TUI) 来管理和监控 PostgreSQL 数据库连接。
+p6s 是一个基于终端的 PostgreSQL 数据库管理工具，使用 Go 语言开发，提供直观的文本用户界面 (TUI) 来管理和监控 PostgreSQL 数据库连接。它可以轻松访问部署在任意环境中的 PostgreSQL 实例，特别是 Kubernetes 集群中的数据库，无需额外的 IDE 或 SQL 客户端，让数据库管理变得更加简单高效。
 
 ## 主要功能
 
