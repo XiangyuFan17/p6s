@@ -27,13 +27,7 @@ jobs:
         GOOS=darwin GOARCH=amd64 go build -o build/p6s-darwin-amd64 cmd/p6s/main.go
         GOOS=darwin GOARCH=arm64 go build -o build/p6s-darwin-arm64 cmd/p6s/main.go
 
-    - name: Create GitHub Release
-      id: create_release
-      uses: ncipollo/release-action@v1
-      with:
-        tag: ${{ github.ref_name }}
-
-    - name: Upload binaries to release
+    - name: Create Release and upload binaries
       uses: ncipollo/release-action@v1
       with:
         tag: ${{ github.ref_name }}
