@@ -1,23 +1,32 @@
 # p6s - PostgreSQL Terminal Management Tool
 
 <div align="center">
-  <img src="assets/p6s.png" alt="p6s" width="200" height="auto">
+  <img src="assets/p6s.png" alt="p6s" width="150" height="auto">
+</div>
+
+<div align="center">
+  <a href="README.md">English</a> | <a href="README_zh.md">中文</a>
 </div>
 
 ## Introduction
 
-p6s is a terminal-based PostgreSQL database management tool developed in Go, providing an intuitive text user interface (TUI) for managing and monitoring PostgreSQL database connections.
+p6s is a terminal-based PostgreSQL database management tool developed in Go, providing an intuitive text user interface (TUI) for managing and monitoring PostgreSQL database connections. It enables easy access to PostgreSQL instances deployed anywhere, especially in Kubernetes clusters, without requiring additional IDEs or SQL clients, making database management simpler and more efficient.
 
 ## Key Features
 
+- **Built-in Database Monitoring**: Quickly access comprehensive database information through built-in functions:
+  - View all/active/blocked database connections with real-time status
+  - Display database table statistics including size, row count, and index information
+  - One-click filtering and switching between different connection views
+- **Kubernetes Native Integration**: Seamlessly connect to PostgreSQL instances in Kubernetes clusters:
+  - Auto-discover PostgreSQL pods through local kubeconfig
+  - Direct selection of pods, containers, and associated secrets
+  - Automatic credential extraction from Kubernetes secrets
+  - Support for port-forwarding and namespace switching
 - **Connection Management**: Connect to PostgreSQL database servers with support for configuring and saving connection information
-- **Connection Monitoring**: Real-time viewing and monitoring of database connection status
 - **Database Switching**: Quick switching between different databases
-- **Connection Filtering**: Support for filtering connections by different conditions (all connections, active connections, blocked connections)
 - **Command Mode**: Support for executing commands within the application
-- **Kubernetes Integration**: Browse and manage Kubernetes Secrets for database credentials
 - **Custom SQL Queries**: Execute custom SQL queries with results display
-- **Table Statistics**: View database table size and statistics information
 
 ## Screenshots
 
@@ -122,3 +131,7 @@ Connection configuration information is saved in the `.p6s/config.json` file in 
 ## License
 
 MIT License
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=XiangyuFan17/p6s&type=Date)](https://www.star-history.com/#XiangyuFan17/p6s&Date)
